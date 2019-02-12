@@ -135,9 +135,9 @@ public class ChatActivity extends AbstractActivity
   public void activities() {
     disposables.add(
         Flowable.interval(1, TimeUnit.SECONDS)
-            .takeWhile(periods -> conversations != null)
+            .filter(periods -> conversations != null)
             .subscribe(
-                secs ->
+                periods ->
                     api.activities(
                         conversations,
                         new NetworkResponseListener<ActivitiesInfo, String>() {
